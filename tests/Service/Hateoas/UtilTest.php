@@ -5,6 +5,7 @@ use League\Container\Container;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Phprest\Stub\Entity\Sample;
 
 class UtilTest extends \PHPUnit_Framework_TestCase
 {
@@ -83,9 +84,9 @@ EOD
         $request = new Request([],[],[],[],[],[], '{"a":1,"b":2}');
         $request->headers->set('Content-Type', 'application/json', true);
 
-        $sample = $this->deserialize('Phprest\Stub\Entity\Sample', $request);
+        $sample = $this->deserialize(Sample::class, $request);
 
-        $this->assertInstanceOf('Phprest\Stub\Entity\Sample', $sample);
+        $this->assertInstanceOf(Sample::class, $sample);
         $this->assertEquals(1, $sample->a);
         $this->assertEquals(2, $sample->b);
     }

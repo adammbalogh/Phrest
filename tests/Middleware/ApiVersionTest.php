@@ -17,7 +17,7 @@ class ApiVersionTest extends \PHPUnit_Framework_TestCase
 
         /** @var \Mockery\MockInterface $app */
         $app->shouldReceive('handle')->andReturnUsing(function($request) {
-            $this->assertInstanceOf('Phprest\HttpFoundation\Request', $request);
+            $this->assertInstanceOf(\Phprest\HttpFoundation\Request::class, $request);
 
             /** @var \Phprest\HttpFoundation\Request $request */
             $this->assertEquals('/2.6/temperatures', $request->getPathInfo());
@@ -30,7 +30,7 @@ class ApiVersionTest extends \PHPUnit_Framework_TestCase
 
     public function appProvider()
     {
-        $app = \Mockery::mock('Phprest\Application');
+        $app = \Mockery::mock(Application::class);
 
         $config = new Config('test', '2.6');
         $config->getContainer()->add(Application::CONTAINER_ID_VENDOR, $config->getVendor());

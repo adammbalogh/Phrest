@@ -2,6 +2,7 @@
 
 use Phprest\Stub\Service\SampleConfig;
 use League\Container\Container;
+use Hateoas\Hateoas;
 
 class HateoasTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,7 +31,7 @@ class HateoasTest extends \PHPUnit_Framework_TestCase
 
         $hateoasService = $this->container->get(Config::getServiceName());
 
-        $this->assertInstanceOf('\Hateoas\Hateoas', $hateoasService);
+        $this->assertInstanceOf(Hateoas::class, $hateoasService);
     }
 
     public function testUrlGeneratorRelative()
@@ -75,7 +76,7 @@ class HateoasTest extends \PHPUnit_Framework_TestCase
         $service = new Service();
         $service->register($this->container, $this->hateoasConfig);
 
-        $this->assertInstanceOf('\Hateoas\Hateoas', $this->serviceHateoas());
+        $this->assertInstanceOf(Hateoas::class, $this->serviceHateoas());
     }
 
     protected function getContainer()

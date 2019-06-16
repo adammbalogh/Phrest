@@ -4,6 +4,7 @@ use Phprest\Application;
 use Phprest\Service;
 use League\Container\Container;
 use Symfony\Component\HttpFoundation\Request;
+use Phprest\HttpFoundation\Response;
 
 class StrategyTest extends \PHPUnit_Framework_TestCase
 {
@@ -55,8 +56,8 @@ class StrategyTest extends \PHPUnit_Framework_TestCase
             []
         );
 
-        $this->assertInstanceOf('Phprest\HttpFoundation\Response', $result);
-        if ($result instanceof \Phprest\HttpFoundation\Response) {
+        $this->assertInstanceOf(Response::class, $result);
+        if ($result instanceof Response) {
             $this->assertEquals(json_encode('sample'), $result->getContent());
         }
     }

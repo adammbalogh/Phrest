@@ -2,6 +2,7 @@
 
 use Phprest\Application;
 use League\Container\Container;
+use Phprest\Util\DataStructure\MimeProcessResult;
 
 class MimeTest extends \PHPUnit_Framework_TestCase
 {
@@ -24,7 +25,7 @@ class MimeTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->processMime('application/json');
 
-        $this->assertInstanceOf('Phprest\Util\DataStructure\MimeProcessResult', $result);
+        $this->assertInstanceOf(MimeProcessResult::class, $result);
 
         $this->assertEquals('application/vnd.phprest-test-v1.5+json', $result->mime);
         $this->assertEquals('phprest-test', $result->vendor);
@@ -39,7 +40,7 @@ class MimeTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->processMime('application/xml');
 
-        $this->assertInstanceOf('Phprest\Util\DataStructure\MimeProcessResult', $result);
+        $this->assertInstanceOf(MimeProcessResult::class, $result);
 
         $this->assertEquals('application/vnd.phprest-test-v1.5+xml', $result->mime);
         $this->assertEquals('xml', $result->format);
@@ -52,7 +53,7 @@ class MimeTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->processMime('application/vnd.phprest-test-v2.7+json');
 
-        $this->assertInstanceOf('Phprest\Util\DataStructure\MimeProcessResult', $result);
+        $this->assertInstanceOf(MimeProcessResult::class, $result);
 
         $this->assertEquals('application/vnd.phprest-test-v2.7+json', $result->mime);
         $this->assertEquals('2.7', $result->apiVersion);
@@ -66,7 +67,7 @@ class MimeTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->processMime('application/vnd.phprest-test+xml; version=3');
 
-        $this->assertInstanceOf('Phprest\Util\DataStructure\MimeProcessResult', $result);
+        $this->assertInstanceOf(MimeProcessResult::class, $result);
 
         $this->assertEquals('application/vnd.phprest-test+xml; version=3', $result->mime);
         $this->assertEquals(3, $result->apiVersion);
